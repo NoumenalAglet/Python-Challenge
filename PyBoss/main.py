@@ -58,12 +58,17 @@ with open(csv_path) as csv_file:
         #test = us.us_state_abbrev.keys()
         #print(test)
         
+        #for i in state:
+         #   if i in us.us_state_abbrev.keys():
+         #       i = us.us_state_abbrev.values()
+         #       print(i)
         for i in state:
-            if i in us.us_state_abbrev.keys():
-                i = us.us_state_abbrev.values()
-                print(i)
-
-
+           # if i in us.us_state_abbrev.items():
+           #     i = us.us_state_abbrev.values[i]
+            for key, value in us.us_state_abbrev.items():
+                if key in us.us_state_abbrev:
+                    i = us.us_state_abbrev.values
+        print(i)
 
         #can use to add new col - will just need one
         complete_data.append(state)
