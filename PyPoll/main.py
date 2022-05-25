@@ -38,7 +38,6 @@ for key, value in candidates_vote_tally.items():
     if value == highest_candidate_vote_count:
         winner = key
 
-#add percent sign, may also multi single trunc to 3 decimals
 #setting up data into a dict to be output to be written to a text file
 output_lines = {
                 "a" : "Election Results", 
