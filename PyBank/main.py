@@ -14,6 +14,7 @@ current_lowest_change = 0
 month_lowest_change = ""
 sum_profit_changes = 0
 average_profit_change = 0
+output_lines = {}
 
 #reading the csv file
 csv_path = (f"Resources/budget_data.csv")

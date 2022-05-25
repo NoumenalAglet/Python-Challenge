@@ -8,6 +8,7 @@ cand_keys = []
 cand_values = []
 highest_candidate_vote_count = 0
 winner = ""
+output_lines = {}
 
 #reading the csv file
 csv_path = ('Resources/election_data.csv')
@@ -52,31 +53,32 @@ Winner: Khan
 -------------------------
 ''' 
 
-#somesort of output problem maybe with lines vs output_lines
-
 #add percent sign, may also multi single trunc to 3 decimals
-#setting up data into a list to be output to Election_Data_Analysis.txt
-a = "Election Results"
-b = "-------------------------"
-c = f"Total Votes: {total_vote_count}"
-d = "-------------------------"
-e = f"{cand_keys[0]}: {round(cand_values[0]/total_vote_count*100, 3)} ({cand_values[0]})"
-f = f"{cand_keys[1]}: {round(cand_values[1]/total_vote_count*100, 3)} ({cand_values[1]})"
-g = f"{cand_keys[2]}: {round(cand_values[2]/total_vote_count*100, 3)} ({cand_values[2]})"
-h = f"{cand_keys[3]}: {round(cand_values[3]/total_vote_count*100, 3)} ({cand_values[3]})"
-i = "-------------------------"
-j = f"Winner: {winner}"
-k = "-------------------------"
+#setting up data into a dict to be output to be written to a text file
+output_lines = {
+                "a" : "Election Results", 
+                "b" : "-------------------------",
+                "c" : f"Total Votes: {total_vote_count}",
+                "d" : "-------------------------",
+                "e" : f"{cand_keys[0]}: {round(cand_values[0]/total_vote_count*100, 3)} ({cand_values[0]})",
+                "f" : f"{cand_keys[1]}: {round(cand_values[1]/total_vote_count*100, 3)} ({cand_values[1]})",
+                "g" : f"{cand_keys[2]}: {round(cand_values[2]/total_vote_count*100, 3)} ({cand_values[2]})",
+                "h" : f"{cand_keys[3]}: {round(cand_values[3]/total_vote_count*100, 3)} ({cand_values[3]})",
+                "i" : "-------------------------",
+                "j" : f"Winner: {winner}",
+                "k" : "-------------------------"
+}
 
-output_lines = [a, b, c, d, e, f, g, h, i , j, k]
+#printing output in terminal
+for x in output_lines:
+	print(output_lines[x])
 
-#eh works diff maybe? didnt need to be ints for pybank 
-#printing output to terminal
-#for x in output_lines:
-#	print(output_lines[x])
+#converting output to a list to be written to a text file
+file_output = dict.values(output_lines)
 
 #output to Election_Data_Analysis.txt
 file_path = ('Analysis/Election_Data_Analysis.txt')
 with open(file_path, 'w') as f:
-	f.write('\n'.join(output_lines))
+	f.write('\n'.join(file_output))
+
 
