@@ -2,13 +2,18 @@
 
 import csv
 from hashlib import new
+
+from sklearn.utils import column_or_1d
 #from operator import index #?
 
 #variables
-temp_row = []
-new_row_list = []
-old_row_list = []
-test_append = []
+complete_data = []
+id = []
+name = []
+dob = []
+ssn = []
+state = []
+
 #open Resources/employee_data.csv
 csv_path = ('Resources/employee_data.csv')
 with open(csv_path) as csv_file: 
@@ -18,75 +23,39 @@ with open(csv_path) as csv_file:
 
   
     for line in csv_reader:
-        #save into columns
-        #name
-        column1 = line[0]
-        column2 = line[1]
-        column3 = line[2]
-        column4 = line[3]
-        column5 = line[4]
-        #print(column5)
+        #adding a new variable which will need more cols later
+        complete_data = line
+        
+        #save into columns - alter stuff
+        #origcolumn1 - stays the same - may nor even need
+        id = complete_data[0]
+        
+        #origcolumn2 - divides into two cols
+        name = complete_data[1]
+        name = name.split()
+        first_name = name[0]
+        last_name = name[1]
 
-        #alter stuff
+        #origcolumn3 - will b altered
+        dob = complete_data[2]
 
-        #save back overwritting columns
-        for x in line:
-           line[0] = column1
-           line[4] = column2
-        print(line)
+        #origcolumn4 - will b altered
+        ssn = complete_data[3]
 
+        #origcolumn5 - State
+        state = complete_data[4]
+        
 
+        #can use to add new col - will just need one
+        complete_data.append(state)
 
-        #made list
-        #old_row_list = list(line)
-        #print(old_row_list)
-        #saved all of index[0] into variable
-        #new_row_list = old_row_list.append(line)
-        #print(new_row_list)
-        #test var to append
-        #test_append = old_row_list[1]
-        #print(test_append)
+       
 
-        #for i in old_row_list:
-        #    old_row_list.append(test_append[i])
-        #    print(old_row_list)
-
-
-
-        #print(old_row_list[0])
-        #print(new_row_list)
-
-        #zipped = zip(new_row_list, test_append)
-        #print(list(zipped))
-
-
-
-        #new_row_list = list(i)
-        #new_row_list = i[4][0]
-
-        #new_row_list = list(i)
-        #new_row_list = i[0]
-        #temp_var = i[1] + "hat" #split name
-        #new_row_list.append(temp_var) #hmm
-        #print(new_row_list)
-        #print(temp_var)
-    
-
-
-
-        #append as we go?
-        #new_row_list.append(old_row_list[0])
-
-        #print(old_row_list)
-
-
-        #print(temp_row[1])
-        # = temp_row["overwrite"]
-
-        #save rows as lists, maybe not nec
-
-
-
+        #save back overwritting columns, samples
+        for x in complete_data:
+           complete_data[1] = first_name
+           complete_data[2] = last_name
+        print(complete_data)
 
 
 
