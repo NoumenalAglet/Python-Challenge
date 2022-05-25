@@ -1,10 +1,9 @@
 #PyBoss
 
 import csv
-from hashlib import new
-
-from sklearn.utils import column_or_1d
-#from operator import index #?
+from datetime import datetime
+#so we can use the state abbreviations dict
+import us_state_abbrev as us
 
 #variables
 complete_data = []
@@ -37,14 +36,34 @@ with open(csv_path) as csv_file:
         last_name = name[1]
 
         #origcolumn3 - will b altered
+        #dunno how to use date function, all data types dont seem to work
         dob = complete_data[2]
+        
+        #print(type(dob))
+        #for i in dob:
+        #    i.strftime("%m/%d/%Y")
+        #    print(i)
 
         #origcolumn4 - will b altered
+        #dont know enough about str, would be good to overwrite range
         ssn = complete_data[3]
+        # [s for s in ssn[:-5] = '*']
+        
+        #ast = '***-**'
+        #for i in ssn:
+        #    i.append(ast)
 
         #origcolumn5 - State
         state = complete_data[4]
+        #test = us.us_state_abbrev.keys()
+        #print(test)
         
+        for i in state:
+            if i in us.us_state_abbrev.keys():
+                i = us.us_state_abbrev.values()
+                print(i)
+
+
 
         #can use to add new col - will just need one
         complete_data.append(state)
@@ -55,11 +74,15 @@ with open(csv_path) as csv_file:
         for x in complete_data:
            complete_data[1] = first_name
            complete_data[2] = last_name
-        print(complete_data)
+           complete_data[3] = dob
+           complete_data[4] = ssn
+           #complete_data[5] = state, being appended above
+        #print(complete_data)
 
 
-
-
+#x_date = datetime.now()
+#print('Current Date:', x_date)
+#print("mm-dd-yyyy:", x_date.strftime("%m/%d/%Y"))
 
 '''
 #output to Analysis/employee_data.csv
