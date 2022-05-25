@@ -38,21 +38,6 @@ for key, value in candidates_vote_tally.items():
     if value == highest_candidate_vote_count:
         winner = key
 
-''' 
-#print analysis in terminal
-Election Results
--------------------------
-Total Votes: 3521001
--------------------------
-Khan: 63.000% (2218231)
-Correy: 20.000% (704200)
-Li: 14.000% (492940)
-O'Tooley: 3.000% (105630)
--------------------------
-Winner: Khan
--------------------------
-''' 
-
 #add percent sign, may also multi single trunc to 3 decimals
 #setting up data into a dict to be output to be written to a text file
 output_lines = {
@@ -60,10 +45,10 @@ output_lines = {
                 "b" : "-------------------------",
                 "c" : f"Total Votes: {total_vote_count}",
                 "d" : "-------------------------",
-                "e" : f"{cand_keys[0]}: {round(cand_values[0]/total_vote_count*100, 3)} ({cand_values[0]})",
-                "f" : f"{cand_keys[1]}: {round(cand_values[1]/total_vote_count*100, 3)} ({cand_values[1]})",
-                "g" : f"{cand_keys[2]}: {round(cand_values[2]/total_vote_count*100, 3)} ({cand_values[2]})",
-                "h" : f"{cand_keys[3]}: {round(cand_values[3]/total_vote_count*100, 3)} ({cand_values[3]})",
+                "e" : f"{cand_keys[0]}: {round(cand_values[0]/total_vote_count*100, 3)}% ({cand_values[0]})",
+                "f" : f"{cand_keys[1]}: {round(cand_values[1]/total_vote_count*100, 3)}% ({cand_values[1]})",
+                "g" : f"{cand_keys[2]}: {round(cand_values[2]/total_vote_count*100, 3)}% ({cand_values[2]})",
+                "h" : f"{cand_keys[3]}: {round(cand_values[3]/total_vote_count*100, 3)}% ({cand_values[3]})",
                 "i" : "-------------------------",
                 "j" : f"Winner: {winner}",
                 "k" : "-------------------------"
