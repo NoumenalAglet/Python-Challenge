@@ -1,7 +1,7 @@
 #PyBoss
 
 import csv
-#so we can use the state abbreviations dict
+#will use state abbreviations dict
 from us_state_abbrev import us_state_abbrev
 import os
 
@@ -26,12 +26,10 @@ with open(csv_path) as csv_file:
         #adding a new variable which will need more cols later
         complete_data = line
         
-        #storing each column as a list and altering as need
-        #origcolumn1 - stays the same - may nor even need
+        #storing each column in a list, altering all but 'id'
         id = complete_data[0]
         
         #splitting name then storing in different variables
-        #origcolumn2 - divides into two cols
         name = complete_data[1]
         name = name.split()
         first_name = name[0]
@@ -56,7 +54,7 @@ with open(csv_path) as csv_file:
         ssn = ssn[slice_object]
         ssn = "***-**" + ssn
 
-        #find the state in the dictionary imported above and change abbreviate
+        #find the state in the dictionary imported above and abbreviate
         state = complete_data[4]
         if state in us_state_abbrev:
             state = us_state_abbrev[state]    
@@ -68,18 +66,22 @@ with open(csv_path) as csv_file:
         complete_data[4] = ssn
         complete_data.append(state)
 
-        print(complete_data)
+        #list(complete_data)
+       # print(complete_data)
+
 
 
 #output to Analysis/employee_data.csv
 csv_path = os.path.join("Analysis", "Employee_Data_Formatted.csv")
 with open(csv_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-#will loop
-    #write the first row (column headers)
-    csvwriter.writerow(['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State'])
-    #write the second row
-    csvwriter.writerow(['!214!', 'Sarah', 'Simpson', '12/04/1985', '***-**-8166', 'FL'])
+    for x in complete_data:
+        csvwriter.writerows(complete_data)
+        print(complete_data) #for some reason complete data is 5 rows with last lists value
+        #could possible move indentation
 
-#converting output to a list to be written to a text file
-#file_output = dict.values(output_lines)
+    #write the first row (column headers)
+  #  csvwriter.writerow(['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State'])
+    #write the second row
+ #   csvwriter.writerow(['!214!', 'Sarah', 'Simpson', '12/04/1985', '***-**-8166', 'FL'])
+
