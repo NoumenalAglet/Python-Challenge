@@ -4,6 +4,7 @@ import csv
 from datetime import datetime
 #so we can use the state abbreviations dict
 import us_state_abbrev as us
+import os
 
 #variables
 complete_data = []
@@ -13,8 +14,9 @@ dob = []
 ssn = []
 state = []
 
+
 #open Resources/employee_data.csv
-csv_path = ('Resources/employee_data.csv')
+csv_path = os.path.join("Resources", "employee_data.csv")
 with open(csv_path) as csv_file: 
     csv_reader = csv.reader(csv_file, delimiter=',') 
     #skipping header
@@ -43,6 +45,7 @@ with open(csv_path) as csv_file:
         #for i in dob:
         #    i.strftime("%m/%d/%Y")
         #    print(i)
+        #split with - delimiter?
 
         #origcolumn4 - will b altered
         #dont know enough about str, would be good to overwrite range
@@ -62,13 +65,13 @@ with open(csv_path) as csv_file:
          #   if i in us.us_state_abbrev.keys():
          #       i = us.us_state_abbrev.values()
          #       print(i)
-        for i in state:
+   #     for i in state:
            # if i in us.us_state_abbrev.items():
            #     i = us.us_state_abbrev.values[i]
-            for key, value in us.us_state_abbrev.items():
-                if key in us.us_state_abbrev:
-                    i = us.us_state_abbrev.values
-        print(i)
+        #for key, value in us.items():
+         #   if key in state:
+         #       state[value] = us.values
+        #print(i)
 
         #can use to add new col - will just need one
         complete_data.append(state)
@@ -82,27 +85,23 @@ with open(csv_path) as csv_file:
            complete_data[3] = dob
            complete_data[4] = ssn
            #complete_data[5] = state, being appended above
-        #print(complete_data)
+        print(complete_data)
 
 
 #x_date = datetime.now()
 #print('Current Date:', x_date)
 #print("mm-dd-yyyy:", x_date.strftime("%m/%d/%Y"))
 
-'''
-#output to Analysis/employee_data.csv
-file_path = ('Analysis/employee_data.csv')
-with open(file_path, 'w', newline='') as csvfile:
-    csvwriter = csv.writer(csvfile, delimiter=',')
 
-will loop
+#output to Analysis/employee_data.csv
+csv_path = os.path.join("Analysis", "Employee_Data_Formatted.csv")
+with open(csv_path, 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+#will loop
     #write the first row (column headers)
     csvwriter.writerow(['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State'])
-
     #write the second row
-    csvwriter.writerow(['214', 'Sarah', 'Simpson', '12/04/1985', '***-**-8166', 'FL'])
+    csvwriter.writerow(['!214!', 'Sarah', 'Simpson', '12/04/1985', '***-**-8166', 'FL'])
 
-
-'''
 #converting output to a list to be written to a text file
 #file_output = dict.values(output_lines)

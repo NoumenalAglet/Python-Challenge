@@ -1,5 +1,6 @@
 #PyPoll
 import csv
+import os
 
 #defining variables
 candidates_vote_tally = {}
@@ -11,7 +12,7 @@ winner = ""
 output_lines = {}
 
 #reading the csv file
-csv_path = ('Resources/election_data.csv')
+csv_path = os.path.join("Resources", "election_data.csv")
 with open(csv_path) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',') 
     #skipping header
@@ -61,7 +62,7 @@ for x in output_lines:
 file_output = dict.values(output_lines)
 
 #output to Election_Data_Analysis.txt
-file_path = ('Analysis/Election_Data_Analysis.txt')
+file_path = os.path.join("Analysis", "Election_Data_Analysis.txt")
 with open(file_path, 'w') as f:
 	f.write('\n'.join(file_output))
 

@@ -1,5 +1,6 @@
 #PyBank
 import csv
+import os
 
 #Variables
 month_counter = 1
@@ -18,7 +19,7 @@ output_lines = {}
 first_line = True
 
 #reading the csv file
-csv_path = (f"Resources/budget_data.csv")
+csv_path = os.path.join("Resources", "budget_data.csv")
 with open(csv_path) as csv_file:
 	csv_reader = csv.reader(csv_file, delimiter=',') 
 	#skipping header
@@ -71,7 +72,7 @@ for x in output_lines:
 file_output = dict.values(output_lines)
 
 #writting analysis text file
-file_path = ('Analysis/Budget_Data_Analysis.txt')
+file_path = os.path.join("Analysis", "Budget_Data_Analysis.txt")
 with open(file_path, 'w') as f:
 	f.write('\n'.join(file_output))
 
