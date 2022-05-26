@@ -2,11 +2,11 @@
 
 import csv
 #so we can use the state abbreviations dict
-import us_state_abbrev as us
+from us_state_abbrev import us_state_abbrev
 import os
 
 #variables
-complete_data = []
+complete_data = [] #could change name to local data or data
 id = []
 name = []
 dob = []
@@ -37,8 +37,7 @@ with open(csv_path) as csv_file:
         first_name = name[0]
         last_name = name[1]
 
-        #converting date from YYYY-DD-MM to MM/DD/YYYY
-        #origcolumn3 - will b altered
+        #converting date from YYYY-MM-DD to MM/DD/YYYY
         dob = complete_data[2]
         #sperating by '-'
         dob = dob.split('-')
@@ -46,55 +45,29 @@ with open(csv_path) as csv_file:
         day = dob[1]
         month = dob[2]
         #putting the pieces back together in new order with a '/'
-        #for x in dob:
-        dob[0] = month
-        dob[1] = day
+        dob[0] = day
+        dob[1] = month
         dob[2] = year       
         dob = '/'.join([str(item) for item in dob])
-        #print(dob)
 
-        #slicing out the digits to keep and appending them to str of *
-        #origcolumn4 - will b altered
+        #slicing out the digits to keep and str of *
         ssn = complete_data[3]
-        # [s for s in ssn[:-5] = '*']
         slice_object = slice(6, 11, 1)
         ssn = ssn[slice_object]
-        #print(ssn)
-       
+        ssn = "***-**" + ssn
 
-        x = '***-**'.join(ssn)
-        #print(x)
-        #Not quite
-
-        #origcolumn5 - State
+        #find the state in the dictionary imported above and change abbreviate
         state = complete_data[4]
-        #test = us.us_state_abbrev.keys()
-        #print(test)
-        
-        #for i in state:
-         #   if i in us.us_state_abbrev.keys():
-         #       i = us.us_state_abbrev.values()
-         #       print(i)
-   #     for i in state:
-           # if i in us.us_state_abbrev.items():
-           #     i = us.us_state_abbrev.values[i]
-        #for key, value in us.items():
-         #   if key in state:
-         #       state[value] = us.values
-        #print(i)
+        if state in us_state_abbrev:
+            state = us_state_abbrev[state]    
 
-        #can use to add new col - will just need one
+        #putting it all back together
+        complete_data[1] = first_name
+        complete_data[2] = last_name
+        complete_data[3] = dob
+        complete_data[4] = ssn
         complete_data.append(state)
 
-       
-
-        #save back overwritting columns, samples
-        for x in complete_data:
-           complete_data[1] = first_name
-           complete_data[2] = last_name
-           complete_data[3] = dob
-           complete_data[4] = ssn
-           #complete_data[5] = state, being appended above
         print(complete_data)
 
 
