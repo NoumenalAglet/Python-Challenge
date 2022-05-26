@@ -1,7 +1,6 @@
 #PyBoss
 
 import csv
-from datetime import datetime
 #so we can use the state abbreviations dict
 import us_state_abbrev as us
 import os
@@ -27,34 +26,45 @@ with open(csv_path) as csv_file:
         #adding a new variable which will need more cols later
         complete_data = line
         
-        #save into columns - alter stuff
+        #storing each column as a list and altering as need
         #origcolumn1 - stays the same - may nor even need
         id = complete_data[0]
         
+        #splitting name then storing in different variables
         #origcolumn2 - divides into two cols
         name = complete_data[1]
         name = name.split()
         first_name = name[0]
         last_name = name[1]
 
+        #converting date from YYYY-DD-MM to MM/DD/YYYY
         #origcolumn3 - will b altered
-        #dunno how to use date function, all data types dont seem to work
         dob = complete_data[2]
-        
-        #print(type(dob))
-        #for i in dob:
-        #    i.strftime("%m/%d/%Y")
-        #    print(i)
-        #split with - delimiter?
+        #sperating by '-'
+        dob = dob.split('-')
+        year = dob[0]
+        day = dob[1]
+        month = dob[2]
+        #putting the pieces back together in new order with a '/'
+        #for x in dob:
+        dob[0] = month
+        dob[1] = day
+        dob[2] = year       
+        dob = '/'.join([str(item) for item in dob])
+        #print(dob)
 
+        #slicing out the digits to keep and appending them to str of *
         #origcolumn4 - will b altered
-        #dont know enough about str, would be good to overwrite range
         ssn = complete_data[3]
         # [s for s in ssn[:-5] = '*']
-        
-        #ast = '***-**'
-        #for i in ssn:
-        #    i.append(ast)
+        slice_object = slice(6, 11, 1)
+        ssn = ssn[slice_object]
+        #print(ssn)
+       
+
+        x = '***-**'.join(ssn)
+        #print(x)
+        #Not quite
 
         #origcolumn5 - State
         state = complete_data[4]
@@ -86,11 +96,6 @@ with open(csv_path) as csv_file:
            complete_data[4] = ssn
            #complete_data[5] = state, being appended above
         print(complete_data)
-
-
-#x_date = datetime.now()
-#print('Current Date:', x_date)
-#print("mm-dd-yyyy:", x_date.strftime("%m/%d/%Y"))
 
 
 #output to Analysis/employee_data.csv
