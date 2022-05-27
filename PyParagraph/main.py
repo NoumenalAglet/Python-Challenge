@@ -1,8 +1,10 @@
 #PyParagraph
 
 import os
+import re
 
 #defining variables
+main_text = ''
 
 #reading paragraph_1 in Resources
 file_path = os.path.join("Resources", "paragraph_1.txt")
@@ -11,23 +13,22 @@ with open(file_path, 'r', encoding="UTF-8") as f:
     #print(f.readline())
     #print(f.readlines())
 
+    
     main_text = f.readline()
-
-    words = main_text.split()
-    #words = words.count()
-    #words are list doe
+    #print(main_text)
     
+    #approximate word count
+    no_of_words = len(main_text.split())   
+    print(no_of_words)
+
+    #approximate sentence count
+    no_of_sentences = len(re.split("(?<=[.!?]) +", main_text))
     
-    print(words)
-#approximate word count
-#split()
-#count()
+    print(no_of_sentences)
 
-#approximate sentence count
+    #average letter count
 
-#average letter count
-
-#average sentence length
+    #average sentence length
 
 
 #output to terminal

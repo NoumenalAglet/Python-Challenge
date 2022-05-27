@@ -46,8 +46,7 @@ with open(csv_path) as csv_file:
         #slicing out the digits to keep and adding to str of *
         ssn = line[3]
         slice_object = slice(6, 11, 1)
-        ssn = ssn[slice_object]
-        ssn = "***-**" + ssn
+        ssn = "***-**" + ssn[slice_object]
 
         #finding the state in the dictionary imported above and abbreviating
         state = line[4]
