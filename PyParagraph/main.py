@@ -26,6 +26,7 @@ with open(file_path, 'r', encoding="UTF-8") as f:
     print(no_of_words)
 
     #approximate sentence count
+    
     no_of_sentences = len(re.split("(?<=[.!?]) +", main_text))
     
     print(no_of_sentences)
